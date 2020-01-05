@@ -9,7 +9,7 @@ return splash:html()
 
 resp = requests.post(url='http://splash:8050/run', json={
     'lua_source': script,
-    'url': 'https://facebook.com/'
+    'url': 'https://google.com'
 })
 
 print(resp.content)
