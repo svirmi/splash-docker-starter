@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  parser:
+    build: .
+    volumes:
+      - .:/code
+    ports:
+      - "5001:5001"
+    depends_on:
+      - splash
+
+  splash:
+    image: scrapinghub/splash
+    command: --maxrss 2048 --max-timeout 300
+    ports:
+      - "8050:8050"
+    volumes:
+      - ./data/filters:/etc/splash/filters
+      - ./data/js-profiles:/etc/splash/js-profiles
+      - ./data/lua_modules:/etc/splash/lua_modules
+      - ./data/proxy-profiles:/etc/splash/proxy-profiles
+    restart: unless-stopped
